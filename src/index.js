@@ -11,6 +11,34 @@ const CREATE_NOTE = fs.readFileSync("remote-scripts/create-note.js").toString();
 const UPDATE_NOTE_CONTENT = fs.readFileSync("remote-scripts/update-note-content.js").toString();
 
 
+async function processNote(apiClient, note) {
+    if (!note.id) {
+        console.error(`Failed to find an id for a note in notes.json. Please fix to continue. (${JSON.stringify(note)}`);
+        process.exit(-1);
+    }
+
+    const existingNote = await apiClient.runScriptOnBackend(NOTE_BY_ID, [note.id]);
+    const noteContent = fs.readFileSync(note.note).toString();
+
+    // If the note already exists, update it. If it doesn't, create one
+    //   with the provided ID.
+    if (existingNote == null) {
+        const attributes = [
+            {
+                type: "label",
+                name: NOTE_ID_LABEL,
+                value: note.id
+            }
+        ];
+        await apiClient.runScriptOnBackend(CREATE_NOTE, [note.parent, note.title, noteContent, {attributes: attributes}]);
+        console.log("Created a note.");
+    } else {
+        await apiClient.runScriptOnBackend(UPDATE_NOTE_CONTENT, [existingNote.noteId, noteContent]);
+        console.log(`Updated note: ${existingNote.noteId}.`);
+    }
+};
+
+
 module.exports = async function(triliumUrl) {
     const apiClient = new TriliumApi(triliumUrl);
 
@@ -18,29 +46,6 @@ module.exports = async function(triliumUrl) {
     //   instance.
     for (var i = 0; i < notes.length; ++i) {
         const note = notes[i];
-        if (!note.id) {
-            console.error(`Failed to find an id for a note in notes.json. Please fix to continue. (${JSON.stringify(note)}`);
-            process.exit(-1);
-        }
-
-        const existingNote = await apiClient.runScriptOnBackend(NOTE_BY_ID, [note.id]);
-        const noteContent = fs.readFileSync(note.note).toString();
-
-        // If the note already exists, update it. If it doesn't, create one
-        //   with the provided ID.
-        if (existingNote == null) {
-            const attributes = [
-                {
-                    type: "label",
-                    name: NOTE_ID_LABEL,
-                    value: note.id
-                }
-            ];
-            await apiClient.runScriptOnBackend(CREATE_NOTE, [note.parent, note.title, noteContent, {attributes: attributes}]);
-            console.log("Created a note.");
-        } else {
-            console.log(await apiClient.runScriptOnBackend(UPDATE_NOTE_CONTENT, [existingNote.noteId, noteContent]));
-            console.log(`Updated note: ${existingNote.noteId}.`);
-        }
+        await processNote(apiClient, note);
     }
 };
