@@ -71,6 +71,65 @@ class TriliumApi {
 
         return response.body && response.body.executionResult;
     }
+
+    // Although Trilium doesn't seem to expose this very clearly on the front
+    //   end, this endpoint exists.
+    async deleteNote(noteId) {
+        if (!this._authCookie) {
+            await this.login();
+        }
+
+        const requestObj = {
+            uri: this._hostname + "/api/notes/" + noteId,
+            method: "DELETE",
+            headers: {
+                "Cookie": this._authCookie
+            },
+            resolveWithFullResponse: true
+        };
+
+        const response = await request(requestObj);
+
+        if (response.statusCode != 200) {
+            console.log("Failed to delete note.");
+            console.log(response.body);
+        }
+
+        return response.body;
+    }
+
+    async importNote(parentNoteId, noteTar) {
+        if (!this._authCookie) {
+            await this.login();
+        }
+
+        const requestObj = {
+            uri: this._hostname + "/api/notes/" + parentNoteId + "/import",
+            method: "POST",
+            headers: {
+                "Cookie": this._authCookie
+            },
+            formData: {
+                upload: {
+                    value: noteTar,
+                    options: {
+                      filename: "tar_upload.tar",
+                      contentType: "application/x-tar"
+                    }
+                }
+            },
+            resolveWithFullResponse: true
+        };
+
+        const response = await request(requestObj);
+
+        if (response.statusCode != 200) {
+            console.log("Failed to upload note content.");
+            console.log(response.body);
+        }
+
+        return response.body;
+    }
 }
 
 module.exports = TriliumApi;
