@@ -113,8 +113,8 @@ class TriliumApi {
                 upload: {
                     value: noteTar,
                     options: {
-                      filename: "tar_upload.tar",
-                      contentType: "application/x-tar"
+                        filename: "tar_upload.tar",
+                        contentType: "application/x-tar"
                     }
                 }
             },
