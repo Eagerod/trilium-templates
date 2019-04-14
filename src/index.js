@@ -13,6 +13,7 @@ const NOTE_BY_ID = fs.readFileSync("remote-scripts/note-by-id.js").toString();
 const NOTE_BY_AUTO_ID = fs.readFileSync("remote-scripts/note-by-auto-id.js").toString();
 const CREATE_NOTE = fs.readFileSync("remote-scripts/create-note.js").toString();
 const UPDATE_NOTE_CONTENT = fs.readFileSync("remote-scripts/update-note-content.js").toString();
+const SET_NOTE_ATTRIBUTE = fs.readFileSync("remote-scripts/set-note-attribute.js").toString();
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -91,10 +92,18 @@ async function processTreeNote(apiClient, note) {
     }
 
     const tarBuffer = Buffer.concat(tarContent);
-    // fs.writeFileSync("./test.tar", tarBuffer);
 
     console.log('Creating new note tree from tar import.');
-    await apiClient.importNote(parentNote.noteId, tarBuffer);    
+    const resultNoteJSON = await apiClient.importNote(parentNote.noteId, tarBuffer);
+    const resultNote = JSON.parse(resultNoteJSON);
+
+    // Verify that the note we just wrote actually has the internal id it
+    //   should.
+    await apiClient.runScriptOnBackend(SET_NOTE_ATTRIBUTE, [resultNote.noteId, {
+        type: "label",
+        name: NOTE_ID_LABEL,
+        value: note.id
+    }]);
 }
 
 

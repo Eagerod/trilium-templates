@@ -90,7 +90,7 @@ class TriliumApi {
 
         const response = await request(requestObj);
 
-        if (response.statusCode != 200) {
+        if (response.statusCode != 204) {
             console.log("Failed to delete note.");
             console.log(response.body);
         }
