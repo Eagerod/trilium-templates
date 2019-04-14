@@ -1,5 +1,4 @@
 const fs = require("fs");
-const path = require("path");
 
 const tar = require("tar");
 
@@ -47,11 +46,11 @@ async function processSingleNote(apiClient, note) {
                 value: note.id
             }
         ];
-        await apiClient.runScriptOnBackend(CREATE_NOTE, [note.parent, note.title, noteContent, {attributes: attributes}]);
-        console.log("Created a note.");
+        const newNote = await apiClient.runScriptOnBackend(CREATE_NOTE, [note.parent, note.title, noteContent, {attributes: attributes}]);
+        console.log(`Created note: ${note.id} (${JSON.parse(newNote).noteId})`);
     } else {
-        console.log(`Updating note: ${note.id} (${existingNote.noteId})`);
         await apiClient.runScriptOnBackend(UPDATE_NOTE_CONTENT, [existingNote.noteId, noteContent]);
+        console.log(`Updated note: ${note.id} (${existingNote.noteId})`);
     }
 }
 
@@ -65,8 +64,8 @@ async function processTreeNote(apiClient, note) {
     const existingNote = await getNote(apiClient, note.id);
 
     if (existingNote) {
-        console.log(`Found existing note for id: ${note.id} -- ${existingNote.noteId}. Deleting to recreate tree.`);
-        await apiClient.deleteNote(existingNote.noteId)
+        await apiClient.deleteNote(existingNote.noteId);
+        console.log(`Deleted note: ${note.id} (${existingNote.noteId})`);
     }
 
     // Get the parent note, since its id needs to be provided.
@@ -81,7 +80,7 @@ async function processTreeNote(apiClient, note) {
         // This could probably look at something like an ignore file, rather
         //   than just having one filename listed out. Will consider this if it
         //   becomes an issue.
-        filter: (filename, stat) => filename.indexOf('.DS_Store') === -1
+        filter: (filename) => filename.indexOf(".DS_Store") === -1
     };
 
     // Tar and upload.
@@ -93,7 +92,6 @@ async function processTreeNote(apiClient, note) {
 
     const tarBuffer = Buffer.concat(tarContent);
 
-    console.log('Creating new note tree from tar import.');
     const resultNoteJSON = await apiClient.importNote(parentNote.noteId, tarBuffer);
     const resultNote = JSON.parse(resultNoteJSON);
 
@@ -104,6 +102,7 @@ async function processTreeNote(apiClient, note) {
         name: NOTE_ID_LABEL,
         value: note.id
     }]);
+    console.log(`Created tree: ${note.id} (${resultNote.noteId})`);
 }
 
 
@@ -123,7 +122,7 @@ async function processNote(apiClient, note) {
     } else {
         await processSingleNote(apiClient, note);
     }
-};
+}
 
 
 module.exports = async function(triliumUrl) {
