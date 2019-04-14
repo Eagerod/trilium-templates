@@ -11,7 +11,8 @@ Here's one commented example describing how an item in `notes.json` may appear.
 
 ```
 {
-    // The title of the note that's shown in Tilium.
+    // The title of the note that's shown in Trilium. If the provided note is
+    //   an archive that will be uploaded, this is ignored, I think.
     "title": "Templates",
 
     // An unused field that I keep just to keep track of what a specific note
@@ -19,6 +20,9 @@ Here's one commented example describing how an item in `notes.json` may appear.
     "comment_description": "This is the root note that will hold all templates.",
 
     // Path relative to the script directory that contains the note's contents.
+    //   If this points to a directory, the script assumes the directory in
+    //   question contains a valid Trilium note export, and will archive the
+    //   provided directory, and upload it verbatim.
     "note": "notes/templates.html",
 
     // The parent note of this one. Although Trilium does support multiple

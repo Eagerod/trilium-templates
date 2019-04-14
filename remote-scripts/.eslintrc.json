@@ -1,0 +1,8 @@
+{
+    "globals": {
+        "api": true
+    },
+    "rules": {
+        "semi": 0
+    }
+}
