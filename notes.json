@@ -1,0 +1,9 @@
+[
+    {
+        "title": "Templates",
+        "comment_description": "This is the root note that will hold all templates.",
+        "note": "notes/templates.html",
+        "parent": "root",
+        "id": "7688af4d-cabb-4601-8a02-05258070bcf5"
+    }
+]
