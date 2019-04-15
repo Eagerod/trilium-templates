@@ -130,6 +130,29 @@ class TriliumApi {
 
         return response.body;
     }
+
+    async appInfo() {
+        if (!this._authCookie) {
+            await this.login();
+        }
+
+        const requestObj = {
+            uri: this._hostname + "/api/app-info",
+            headers: {
+                "Cookie": this._authCookie
+            },
+            resolveWithFullResponse: true
+        };
+
+        const response = await request(requestObj);
+
+        if (response.statusCode != 200) {
+            console.log("Failed to get app info.");
+            console.log(response.body);
+        }
+
+        return response.body;
+    }
 }
 
 module.exports = TriliumApi;

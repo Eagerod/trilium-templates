@@ -128,6 +128,17 @@ async function processNote(apiClient, note) {
 module.exports = async function(triliumUrl) {
     const apiClient = new TriliumApi(triliumUrl);
 
+    const appInfoJSON = await apiClient.appInfo();
+    if (!appInfoJSON) {
+        throw new Error("App Info failed to load. Can't run version check.");
+    }
+
+    const appInfo = JSON.parse(appInfoJSON);
+    if (appInfo.appVersion !== "0.28.3") {
+        console.error("This version of Trilium hasn't been tested for this script. Exiting for safety");
+        process.exit(3);
+    }
+
     // Iterate over scripts in notes.json, and write notes to the trilium
     //   instance.
     for (var i = 0; i < notes.length; ++i) {
