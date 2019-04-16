@@ -1,2 +1,6 @@
 - [ ] Something I still have to do.
 - [x] Something I've done already.
+# Section 1
+- [ ] Something I have to do related to section 1
+# Section 2
+- [ ] Something else that needs to be done.

@@ -22,9 +22,19 @@ class ToDo {
     }
 }
 
-const $todos = $("#todos");
-const $dones = $("#dones");
+const $templateElement = $("#todo-template").remove();
+const $todoLists = $("#todo-lists");
 const $sourceLink = $("#source-link");
+
+// Create a Done section for anything found in subsections. Insert at end.
+const $dones = $templateElement.clone();
+$dones.find("h6")[0].innerHTML = "Done";
+
+// Create a Generic list as well, but only insert it if needed.
+const $general = $templateElement.clone();
+$general.find("h6")[0].innerHTML = "General";
+var generalNeeded = false;
+
 
 (async () => {
     const sourceNote = await api.runOnServer(async (srcNoteId) => {
@@ -35,11 +45,41 @@ const $sourceLink = $("#source-link");
 
     const toDos = sourceNote.content.trim().split("\n");
 
-    $.each(toDos, (i, v) => {
-        const todo = new ToDo(v);
-        const $list = todo.isToDo ? $todos : $dones;
-        $list.append(todo.html());
-    });
+    for (var i = 0; i < toDos.length; ++i) {
+        const v = toDos[i];
+
+        if (v[0] === "#") {
+            const sectionName = v.substring(1).trim();
+            
+            const $todos = $templateElement.clone();
+            $todos.find("h6")[0].innerHTML = sectionName;
+            $todoLists.append($todos);
+     
+            for (var ii = i+1; ii < toDos.length; ++ii, ++i) {
+                const vv = toDos[ii];
+
+                if (vv[0] === "#") {
+                    break;
+                }
+
+                const todo = new ToDo(vv);
+                const $list = todo.isToDo ? $todos : $dones;
+                $list.append(todo.html());
+            }
+        }
+        else {
+            generalNeeded = true;
+            const todo = new ToDo(v);
+            const $list = todo.isToDo ? $general : $dones;
+            $list.append(todo.html());
+        }
+    }
+
+    if (generalNeeded) {
+        $todoLists.prepend($general);
+    }
+
+    $todoLists.append($dones);
 
     const sourceNoteLink = await api.createNoteLink(sourceNote.noteId);
     $sourceLink.append(sourceNoteLink);
