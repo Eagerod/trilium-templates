@@ -5,5 +5,12 @@
         "note": "notes/templates.html",
         "parent": "root",
         "id": "7688af4d-cabb-4601-8a02-05258070bcf5"
+    },
+    {
+        "title": "Simple ToDos",
+        "comment_description": "Simple markdown-powered todo list rendered with an HTML note.",
+        "note": "notes/ToDos",
+        "parent": "7688af4d-cabb-4601-8a02-05258070bcf5",
+        "id": "2044adc8-3b23-430d-a84d-1eb564d79f6a"
     }
 ]

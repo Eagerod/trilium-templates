@@ -1,0 +1,79 @@
+{
+	"formatVersion": 1,
+	"appVersion": "0.28.3",
+	"files": [
+		{
+			"isClone": false,
+			"noteId": "Nk06R1l0uHM4",
+			"title": "ToDos",
+			"notePosition": 1,
+			"prefix": null,
+			"isExpanded": 1,
+			"type": "render",
+			"mime": "text/html",
+			"attributes": [
+				{
+					"type": "relation",
+					"name": "renderNote",
+					"value": "uL6w79C4xQAP",
+					"isInheritable": false,
+					"position": 0
+				}
+			],
+			"links": [],
+			"dirFileName": "ToDos",
+			"children": [
+				{
+					"isClone": false,
+					"noteId": "uL6w79C4xQAP",
+					"title": "Implementation",
+					"notePosition": 0,
+					"prefix": null,
+					"isExpanded": 1,
+					"type": "code",
+					"mime": "text/html",
+					"attributes": [],
+					"links": [],
+					"dataFileName": "Implementation.html",
+					"dirFileName": "Implementation",
+					"children": [
+						{
+							"isClone": false,
+							"noteId": "nAaVQP4MsXLo",
+							"title": "script.js",
+							"notePosition": 0,
+							"prefix": null,
+							"isExpanded": 0,
+							"type": "code",
+							"mime": "application/javascript;env=frontend",
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "sourceNote",
+									"value": "wK5S5SosbBP2",
+									"isInheritable": false,
+									"position": 0
+								}
+							],
+							"links": [],
+							"dataFileName": "script.js.js"
+						}
+					]
+				},
+				{
+					"isClone": false,
+					"noteId": "wK5S5SosbBP2",
+					"title": "Source",
+					"notePosition": 0,
+					"prefix": null,
+					"isExpanded": 0,
+					"type": "code",
+					"mime": "text/x-markdown",
+					"attributes": [],
+					"links": [],
+					"dataFileName": "Source.mkd"
+				}
+			]
+		}
+	]
+}
