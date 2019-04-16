@@ -1,5 +1,6 @@
 class ToDo {
-    constructor(todoString) {
+    constructor(todoString, section) {
+        this.section = section;
         this.ignore = false;
 
         const checkbox = todoString.substring(0, 5);
@@ -18,7 +19,12 @@ class ToDo {
         if (this.ignore) {
             return "";
         }
-        return `<input type="checkbox" ${this.isToDo ? "" : "checked"}>${this.toDoText}<br/>`;
+
+        if (this.isToDo) {
+            return `<input type="checkbox">${this.toDoText}<br/>`;
+        }
+
+        return `<input type="checkbox" checked> (${this.section}) ${this.toDoText}<br/>`;
     }
 }
 
@@ -62,14 +68,14 @@ var generalNeeded = false;
                     break;
                 }
 
-                const todo = new ToDo(vv);
+                const todo = new ToDo(vv, sectionName);
                 const $list = todo.isToDo ? $todos : $dones;
                 $list.append(todo.html());
             }
         }
         else {
             generalNeeded = true;
-            const todo = new ToDo(v);
+            const todo = new ToDo(v, "General");
             const $list = todo.isToDo ? $general : $dones;
             $list.append(todo.html());
         }
