@@ -8,7 +8,7 @@
 			"title": "ToDos",
 			"notePosition": 1,
 			"prefix": null,
-			"isExpanded": 1,
+			"isExpanded": 0,
 			"type": "render",
 			"mime": "text/html",
 			"attributes": [
@@ -29,7 +29,7 @@
 					"title": "Implementation",
 					"notePosition": 0,
 					"prefix": null,
-					"isExpanded": 1,
+					"isExpanded": 0,
 					"type": "code",
 					"mime": "text/html",
 					"attributes": [],
