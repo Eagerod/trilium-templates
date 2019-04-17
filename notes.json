@@ -26,5 +26,12 @@
         "note": "notes/NOTD",
         "parent": "7688af4d-cabb-4601-8a02-05258070bcf5",
         "id": "6a38276d-c0b0-4f68-957f-3c751aff2b96"
+    },
+    {
+        "title": "Duplicate Tree",
+        "comment_description": "Deep copy a note.",
+        "note": "notes/Duplicate Tree",
+        "parent": "7688af4d-cabb-4601-8a02-05258070bcf5",
+        "id": "11cb304b-1522-44a0-be77-678a0383eed6"
     }
 ]

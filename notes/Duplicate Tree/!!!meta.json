@@ -1,0 +1,19 @@
+{
+	"formatVersion": 1,
+	"appVersion": "0.28.3",
+	"files": [
+		{
+			"isClone": false,
+			"noteId": "FOjAf3wHdnHy",
+			"title": "Duplicate Tree",
+			"notePosition": 29,
+			"prefix": null,
+			"isExpanded": 0,
+			"type": "code",
+			"mime": "application/javascript;env=frontend",
+			"attributes": [],
+			"links": [],
+			"dataFileName": "Duplicate Tree.js"
+		}
+	]
+}
