@@ -1,0 +1,35 @@
+{
+	"formatVersion": 1,
+	"appVersion": "0.28.3",
+	"files": [
+		{
+			"isClone": false,
+			"noteId": "iAKVZenvJ3wZ",
+			"title": "NOTD",
+			"notePosition": 0,
+			"prefix": null,
+			"isExpanded": 1,
+			"type": "code",
+			"mime": "text/html",
+			"attributes": [],
+			"links": [],
+			"dataFileName": "NOTD.html",
+			"dirFileName": "NOTD",
+			"children": [
+				{
+					"isClone": false,
+					"noteId": "EsCpkAetTm3t",
+					"title": "script.js",
+					"notePosition": 0,
+					"prefix": null,
+					"isExpanded": 0,
+					"type": "code",
+					"mime": "application/javascript;env=frontend",
+					"attributes": [],
+					"links": [],
+					"dataFileName": "script.js.js"
+				}
+			]
+		}
+	]
+}

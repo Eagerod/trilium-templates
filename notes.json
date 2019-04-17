@@ -19,5 +19,12 @@
         "note": "notes/Advanced ToDos",
         "parent": "7688af4d-cabb-4601-8a02-05258070bcf5",
         "id": "90e4ee5c-c701-4ea4-a425-aaffe607c138"
+    },
+    {
+        "title": "NOTD",
+        "comment_description": "A note that will automatically update itself with the content of a different note every day, as long as note appear with a certain label.",
+        "note": "notes/NOTD",
+        "parent": "7688af4d-cabb-4601-8a02-05258070bcf5",
+        "id": "6a38276d-c0b0-4f68-957f-3c751aff2b96"
     }
 ]
