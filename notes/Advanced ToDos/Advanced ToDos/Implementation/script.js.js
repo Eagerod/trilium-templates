@@ -1,3 +1,8 @@
+const DAYS_FOR_DEEP_ARCHIVE = 14;
+const deepArchiveCutoffDatetime = new Date();
+deepArchiveCutoffDatetime.setDate(deepArchiveCutoffDatetime.getDate() - DAYS_FOR_DEEP_ARCHIVE);
+const deepArchiveDate = deepArchiveCutoffDatetime.toISOString().split("T")[0];
+
 const $templateElement = $("#todo-template").remove();
 const $todoLists = $("#todo-lists");
 
@@ -17,14 +22,19 @@ const existingSections = {};
     // Have to get the noteIds from the server, and fetch the notes themselves
     //   on the front end.
     // Need to actually have the ORM-ed notes, rather than pure JS objects.
-    const noteIds = await api.runOnServer(async (srcNoteId) => {
+    const {noteIds, listRoot, archiveRoot} = await api.runOnServer(async (srcNoteId) => {
         const note = await api.getNote(srcNoteId);
         const listSourceAttribute = await note.getAttributeValue("relation", "listSource");
+        const archiveSourceAttribute = await note.getAttributeValue("relation", "archiveSource");
 
         const sourceNote = await api.getNote(listSourceAttribute);
         const children = await sourceNote.getChildNotes();
 
-        return children.map((child) => child.noteId);
+        return {
+            noteIds: children.map((child) => child.noteId),
+            listRoot: listSourceAttribute,
+            archiveRoot: archiveSourceAttribute
+        };
     }, [api.currentNote.noteId]);
 
     const notes = await api.getNotes(noteIds);
@@ -60,6 +70,17 @@ const existingSections = {};
             }
         }
 
+        if (completedAt < deepArchiveDate) {
+            console.log(`Note ${note.noteId} was completed over ${DAYS_FOR_DEEP_ARCHIVE} days ago. Permanently Archiving...`);
+            await api.runOnServer(async (noteId, oldParentId, newParentId) => {
+                const note = await api.getNote(noteId);
+                await note.setAttribute("label", "cssClass", "deep-archive");
+                await api.ensureNoteIsPresentInParent(noteId, newParentId);
+                await api.ensureNoteIsAbsentFromParent(noteId, oldParentId);
+            }, [note.noteId, listRoot, archiveRoot]);
+            continue;
+        }
+
         if ($noteSection === null) {
             $noteSection = $general;
             generalNeeded = true;
@@ -74,8 +95,7 @@ const existingSections = {};
             $noteSection.append("<input type='checkbox'> ");
             $noteSection.append($noteLink);
             $noteSection.append("<br/>");
-        }
-        else {
+        } else {
             $done.append("<input type='checkbox' checked> ");
             $done.append($noteLink);
             $done.append("<br/>");
@@ -90,4 +110,6 @@ const existingSections = {};
     if (anyDone) {
         $todoLists.append($done);
     }
+
+    $("#archive-link").append("Go to the ", await api.createNoteLink(archiveRoot), " to see past tasks");
 })();

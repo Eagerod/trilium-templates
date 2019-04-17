@@ -4,9 +4,9 @@
 	"files": [
 		{
 			"isClone": false,
-			"noteId": "oUfAcIn40kx5",
+			"noteId": "hUuLN3nP2894",
 			"title": "Advanced ToDos",
-			"notePosition": 2,
+			"notePosition": 3,
 			"prefix": null,
 			"isExpanded": 0,
 			"type": "render",
@@ -15,9 +15,16 @@
 				{
 					"type": "relation",
 					"name": "renderNote",
-					"value": "bUOgzqZJWmVY",
+					"value": "jwFfdB3OyS3p",
 					"isInheritable": false,
 					"position": 0
+				},
+				{
+					"type": "label",
+					"name": "hideChildrenOverview",
+					"value": "",
+					"isInheritable": false,
+					"position": 1
 				}
 			],
 			"links": [],
@@ -25,9 +32,9 @@
 			"children": [
 				{
 					"isClone": false,
-					"noteId": "YaUD5hHvxCBa",
-					"title": "ToDos",
-					"notePosition": 3,
+					"noteId": "aBl44yYFD0R0",
+					"title": "Archive",
+					"notePosition": 0,
 					"prefix": null,
 					"isExpanded": 0,
 					"type": "text",
@@ -35,20 +42,21 @@
 					"attributes": [
 						{
 							"type": "label",
-							"name": "hideChildrenOverview",
-							"value": "",
+							"name": "cssClass",
+							"value": "deep-archive",
 							"isInheritable": false,
 							"position": 0
 						}
 					],
 					"links": [],
 					"format": "html",
-					"dirFileName": "ToDos",
+					"dataFileName": "Archive.html",
+					"dirFileName": "Archive",
 					"children": [
 						{
 							"isClone": false,
-							"noteId": "YY3AAew4nKNZ",
-							"title": "Something I've already done",
+							"noteId": "SDbfsg1NBw6t",
+							"title": "Something completed a long time ago",
 							"notePosition": 0,
 							"prefix": null,
 							"isExpanded": 0,
@@ -80,18 +88,100 @@
 									"position": 1
 								},
 								{
-									"type": "label",
-									"name": "completedAt",
-									"value": "2019-02-17",
+									"type": "label-definition",
+									"name": "category",
+									"value": {
+										"labelType": "text",
+										"multiplicityType": "singlevalue",
+										"isPromoted": true,
+										"numberPrecision": 0
+									},
 									"isInheritable": false,
 									"position": 2
 								},
 								{
 									"type": "label",
 									"name": "createdAt",
-									"value": "2019-02-15",
+									"value": "2019-04-17",
 									"isInheritable": false,
 									"position": 3
+								},
+								{
+									"type": "label",
+									"name": "completedAt",
+									"value": "2017-05-05",
+									"isInheritable": false,
+									"position": 4
+								},
+								{
+									"type": "label",
+									"name": "cssClass",
+									"value": "deep-archive",
+									"isInheritable": false,
+									"position": 5
+								}
+							],
+							"links": [],
+							"format": "html",
+							"dataFileName": "Something completed a long time ago.html"
+						}
+					]
+				},
+				{
+					"isClone": false,
+					"noteId": "o9v2pfrObiUb",
+					"title": "ToDos",
+					"notePosition": 9,
+					"prefix": null,
+					"isExpanded": 0,
+					"type": "text",
+					"mime": "text/html",
+					"attributes": [
+						{
+							"type": "label",
+							"name": "hideChildrenOverview",
+							"value": "",
+							"isInheritable": false,
+							"position": 0
+						}
+					],
+					"links": [],
+					"format": "html",
+					"dirFileName": "ToDos",
+					"children": [
+						{
+							"isClone": false,
+							"noteId": "vedQrtGAlsrU",
+							"title": "Something I've already done",
+							"notePosition": 3,
+							"prefix": null,
+							"isExpanded": 0,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [
+								{
+									"type": "label-definition",
+									"name": "createdAt",
+									"value": {
+										"labelType": "text",
+										"multiplicityType": "singlevalue",
+										"isPromoted": false,
+										"numberPrecision": 0
+									},
+									"isInheritable": false,
+									"position": 0
+								},
+								{
+									"type": "label-definition",
+									"name": "completedAt",
+									"value": {
+										"labelType": "text",
+										"multiplicityType": "singlevalue",
+										"isPromoted": true,
+										"numberPrecision": 0
+									},
+									"isInheritable": false,
+									"position": 1
 								},
 								{
 									"type": "label-definition",
@@ -103,6 +193,20 @@
 										"numberPrecision": 0
 									},
 									"isInheritable": false,
+									"position": 2
+								},
+								{
+									"type": "label",
+									"name": "createdAt",
+									"value": "2019-02-15",
+									"isInheritable": false,
+									"position": 3
+								},
+								{
+									"type": "label",
+									"name": "completedAt",
+									"value": "2020-05-19",
+									"isInheritable": false,
 									"position": 4
 								}
 							],
@@ -112,9 +216,9 @@
 						},
 						{
 							"isClone": false,
-							"noteId": "t78dqc5YoNB1",
+							"noteId": "0SEawBBcRchM",
 							"title": "Something I have to do related to section 1",
-							"notePosition": 2,
+							"notePosition": 4,
 							"prefix": null,
 							"isExpanded": 0,
 							"type": "text",
@@ -177,9 +281,9 @@
 						},
 						{
 							"isClone": false,
-							"noteId": "OHdzCQqqj4Jz",
+							"noteId": "hO3LTxFw3zDb",
 							"title": "Something I still have to do",
-							"notePosition": 3,
+							"notePosition": 5,
 							"prefix": null,
 							"isExpanded": 0,
 							"type": "text",
@@ -235,9 +339,9 @@
 						},
 						{
 							"isClone": false,
-							"noteId": "ah4SylpPQ6IT",
+							"noteId": "WAtKMr61sQzJ",
 							"title": "Something else that needs to be done.",
-							"notePosition": 4,
+							"notePosition": 6,
 							"prefix": null,
 							"isExpanded": 0,
 							"type": "text",
@@ -302,9 +406,9 @@
 				},
 				{
 					"isClone": false,
-					"noteId": "bUOgzqZJWmVY",
+					"noteId": "jwFfdB3OyS3p",
 					"title": "Implementation",
-					"notePosition": 4,
+					"notePosition": 11,
 					"prefix": null,
 					"isExpanded": 0,
 					"type": "code",
@@ -316,7 +420,7 @@
 					"children": [
 						{
 							"isClone": false,
-							"noteId": "si0UlzhMJZ9n",
+							"noteId": "Dt8iTf4O1uKV",
 							"title": "Template",
 							"notePosition": 0,
 							"prefix": null,
@@ -367,20 +471,27 @@
 						},
 						{
 							"isClone": false,
-							"noteId": "7G0TPG4LoSys",
+							"noteId": "qCTUdW5G8z53",
 							"title": "script.js",
 							"notePosition": 1,
 							"prefix": null,
 							"isExpanded": 0,
 							"type": "code",
 							"mime": "application/javascript;env=frontend",
-							"attributes": [								
+							"attributes": [
 								{
 									"type": "relation",
 									"name": "listSource",
-									"value": "YaUD5hHvxCBa",
+									"value": "o9v2pfrObiUb",
 									"isInheritable": false,
 									"position": 0
+								},
+								{
+									"type": "relation",
+									"name": "archiveSource",
+									"value": "aBl44yYFD0R0",
+									"isInheritable": false,
+									"position": 1
 								}
 							],
 							"links": [],
@@ -390,9 +501,9 @@
 				},
 				{
 					"isClone": false,
-					"noteId": "UDLDZ9DSVkYY",
+					"noteId": "RGsNhpD0WgXI",
 					"title": "menu.js",
-					"notePosition": 5,
+					"notePosition": 13,
 					"prefix": null,
 					"isExpanded": 0,
 					"type": "code",
@@ -408,20 +519,41 @@
 						{
 							"type": "relation",
 							"name": "listSource",
-							"value": "YaUD5hHvxCBa",
+							"value": "o9v2pfrObiUb",
 							"isInheritable": false,
 							"position": 1
 						},
 						{
 							"type": "relation",
 							"name": "templateSource",
-							"value": "si0UlzhMJZ9n",
+							"value": "Dt8iTf4O1uKV",
 							"isInheritable": false,
 							"position": 2
 						}
 					],
 					"links": [],
 					"dataFileName": "menu.js.js"
+				},
+				{
+					"isClone": false,
+					"noteId": "IDKP1kl5sQul",
+					"title": "CSS",
+					"notePosition": 14,
+					"prefix": null,
+					"isExpanded": 0,
+					"type": "code",
+					"mime": "text/css",
+					"attributes": [
+						{
+							"type": "label",
+							"name": "appCss",
+							"value": "",
+							"isInheritable": false,
+							"position": 0
+						}
+					],
+					"links": [],
+					"dataFileName": "CSS.css"
 				}
 			]
 		}
